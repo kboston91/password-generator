@@ -1,10 +1,10 @@
 // Assignment Code
 var generateBtn = document.querySelector('#generate');
 
-var lowerEl = 'abcdefghijklmnopqrstuvwxyz';
-var upperEl = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-var numbersEl = '0123456789';
-var symbolsEl = '!@#$%^&*=+>,?.<';
+var lowerEl = ['abcdefghijklmnopqrstuvwxyz']
+var upperEl = ['ABCDEFGHIJKLMNOPQRSTUVWXYZ']
+var numbersEl = ['0123456789']
+var symbolsEl = ['!@#$%^&*=+>,?.<']
 var parameters = '';
 var newPassword = '';
 
@@ -41,7 +41,7 @@ function generatePassword() {
         var symbols = confirm('Do you need special characters?');
     }
 
-    while (
+    if (
         lowercase === false &&
         uppercase === false &&
         numbers === false &&
@@ -50,76 +50,40 @@ function generatePassword() {
         alert('You must select at least one option.');
     }
 
-    if (lowercase === true) {
+    if (lowercase == true) {
         parameters = parameters.concat(lowerEl);
     }
-    if (uppercase === true) {
+    else {
+      parameters = parameters.concat(upperEl,numbersEl,symbolsEl)
+    }
+    if (uppercase == true) {
         parameters = parameters.concat(upperEl);
     }
-    if (numbers === true) {
+    else {
+      parameters = parameters.concat(lowerEl,numbersEl,symbolsEl)
+    }
+    if (numbers == true) {
         parameters = parameters.concat(numbersEl);
     }
-    if (symbols === true) {
+    else {
+      parameters = parameters.concat(upperEl,lowerEl,symbolsEl)
+    }
+    if (symbols == true) {
         parameters = parameters.concat(symbolsEl);
     }
-
+    else {
+      parameters = parameters.concat(upperEl,numbersEl,lowerEl)
+    }
     console.log('parameters', parameters);  
- 
+  
+    newPassword = '';
     //for loop for the number of characters
  for (let i = 0; i < length; i++) {
   newPassword =
       newPassword + parameters[Math.floor(Math.random() * parameters.length)];
   console.log('newPassword', newPassword);
 }
-    return newPassword 
-    
+    return newPassword
+    generatePassword();
 }  
- 
-// if (lowercase === true && uppercase === true && symbols === true) {
-//   parameters = character.concat(lowerEl,upperEl,symbolsEl);
-// }
-// if (lowercase === true && numbers === true && symbols === true) {
-//   parameters = character.concat(lowerEl,numbersEl,symbolsEl);  
-// }
-// if (uppercase === true && numbers === true && symbols === true) {
-//   parameters = character.concat(upperEl,numbersEl,symbolsEl);
-// }
-// // 2 options true 
-// if (lowercase === true && uppercase === true) {
-//   parameters = character.concat(lowerEl,upperEl);
-// }
-// if (lowercase === true && numbers === true) {
-//   parameters = character.concat(lowerEl,numbersEl);
-// }
-// if (lowercase === true && symbols === true) {
-//   parameters = character.concat(lowerEl,symbolsEl);
-// } 
-// if (uppercase === true && numbers === true) {
-//   parameters = character.concat(upperEl,numbersEl);
-// }
-// if (uppercase === true && symbols === true) {
-//   parameters = character.concat(upperEl,symbolsEl);
-// }
-// if (numbers === true && symbols === true) {
-//   parameters = character.concat(numbersEl,symbolsEl);
-// }   
-// // 1 option true
-// if (lowercase === true) {
-//   parameters = character.concat(lowerEl);
-// }
-// if (uppercase === true) {
-//   parameters = character.concat(upperEl);
-// }
-// if (numbers === true) {
-//   parameters = character.concat(numbersEl);
-// }
-// if (symbols === true) {
-//   parameters = character.concat(symbolsEl);
-// }
 
-// console.log(parameters)
-  
- 
- //inside the for loop, if statements 'if they wanted letters..' randomly pick 1 letter and (+random letter)
- //inside the for loop, 'if they want numbers' randomly pick 1 number and (+random number)
- //inside the for loop, if they want uppercase 
