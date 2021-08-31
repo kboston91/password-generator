@@ -1,6 +1,6 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-
+var character = '';
 var lowerEl = 'abcdefghijklmnopqrstuvwxyz';
 var upperEl = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var numbersEl = '0123456789';
@@ -26,26 +26,32 @@ function generatePassword(){
 // var numbers = confirm('Do you need numbers?');
 // var symbols= confirm('Do you need special characters?');
 var length = prompt('Choose a character count between 8 and 128.');
- //for loop for the number of characters 
- for (let i=0; i <= length; i++) {
-   console.log(length);
 
-   while (length < 8 || length > 128){
-    alert("You must select a number between 8 and 128.");
-    var length = prompt('Choose a character count between 8 and 128.');
-  }
-   
-   
-   if (length >=8 && length <=128){
+while (length < 8 || length > 128){
+  alert("You must select a number between 8 and 128.");
+  var length = prompt('Choose a character count between 8 and 128.');
+}
+ 
+ 
+ if (length >=8 && length <=128){
+  var lowercase= confirm("Do you need lowercase letters?");
+  var uppercase = confirm("Do you need uppercase letters?");
+  var numbers = confirm('Do you need numbers?');
+  var symbols= confirm('Do you need special characters?');
+ }
+
+ while (lowercase === false && uppercase === false && numbers === false && symbols ===false) {
+   alert('You must select at least one option.')
     var lowercase= confirm("Do you need lowercase letters?");
     var uppercase = confirm("Do you need uppercase letters?");
     var numbers = confirm('Do you need numbers?');
     var symbols= confirm('Do you need special characters?');
-   }
+ }
+ //for loop for the number of characters 
+ for (let i=0; i <= length; i++) {
+   console.log(length);
 
-   while (lowercase === false && uppercase === false && numbers === false && symbols ===false) {
-     alert('You must select at least one option.')
-   }
+   
 //all 4
   if (lowercase === true && uppercase === true && numbers === true && symbols === true) {
       parameters = character.concat(lowerEl,upperEl,numbersEl,symbolsEl);
@@ -103,7 +109,7 @@ console.log(parameters)
  //inside the for loop, 'if they want numbers' randomly pick 1 number and (+random number)
  //inside the for loop, if they want uppercase 
   var newPassword= ''
-  newPassword = newPassword+parameters[Math.floor(Math.random() * parameters.length)];
+  newPassword = newPassword + parameters[Math.floor(Math.random() * parameters.length)];
   console.log(newPassword)
 }
   return newPassword
